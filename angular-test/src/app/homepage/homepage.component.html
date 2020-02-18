@@ -1,0 +1,13 @@
+<app-side-bar>
+  
+    <div class="card-container">
+      <div class="card" *ngFor="let tile of tiles" routerLink="/{{tile.pageLink}}">
+     
+        <h2 class="title" > {{ tile.title }} </h2>
+        <div class="sub-title"> {{ tile.count }} </div>
+      </div>  
+   
+     <nav> <button class=add-btn mat-fab color="primary" (click)="onClickCount()" > <i class="fas fa-plus"></i></button></nav>
+    </div>
+  
+</app-side-bar>

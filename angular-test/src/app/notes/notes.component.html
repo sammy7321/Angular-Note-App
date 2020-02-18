@@ -1,0 +1,102 @@
+<p><mat-checkbox [formControl]="disableSelect" >Add a Note</mat-checkbox></p>
+
+
+<div style="text-align: center; justify-content: center; align-items: center; padding-top: 4%;">
+    <div class="example-container">
+        
+        <mat-form-field> <input matInput [disabled]='!disableSelect.value'
+          [(ngModel)]="titleModel" placeholder="Enter Title"> </mat-form-field>
+        <br>
+       
+        <mat-form-field> <input matInput [disabled]='!disableSelect.value'
+          [(ngModel)]="contentModel" placeholder="Add Description"> </mat-form-field>
+        <br>
+       
+       
+      </div>
+       
+      <br>
+       
+      <button mat-raised-button color="accent" (click)="createNotes()"> Add Note</button>
+
+      <hr>
+      
+      <p *ngFor="let i of Notes">
+      <mat-card-title> {{ i.title }} </mat-card-title>
+      <mat-card> {{ i.content }} </mat-card>
+      <mat-card> {{ i.todo }} </mat-card>
+            
+              
+       
+      <hr>
+      <h2>This is a clock</h2>
+     <p> {{ time | date: 'hh:mm:ss a' }} </p>
+
+     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alarm</title>
+        <script>
+          var alarm;
+          var alarmRunning = false;
+    
+          function play() {
+            var audio = new Audio(
+              "https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
+            );
+            audio.play();
+            console.log("played");
+          }
+    
+          function createAlarm() {
+            let input = document.getElementById("time-selector");
+    
+            var time = input.value;
+            if (time !== "") {
+              alarmRunning = true;
+              time = time.split(":");
+    
+              time[0] = parseInt(time[0]);
+              time[1] = parseInt(time[1]);
+    
+              alarm = setInterval(() => {
+                var currTime = new Date();
+                console.log(currTime.getHours());
+                console.log(currTime.getMinutes());
+    
+                console.log(time);
+                if (
+                  time[0] === currTime.getHours() &&
+                  time[1] === currTime.getMinutes()
+                ) {
+                  //   do whatever here play sounds or whatever
+                  play();
+                }
+              }, 1000);
+            }
+          }
+    
+          function deleteAlarm() {
+            if (alarmRunning) {
+              clearInterval(alarm);
+            }
+          }
+        </script>
+      </head>
+      <body>
+        <input type="time" id="time-selector" />
+        <button (click)="createAlarm()">Create Alarm</button>
+        <button (click)="deleteAlarm()">Delete Alarm</button>
+      </body>
+   
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    
